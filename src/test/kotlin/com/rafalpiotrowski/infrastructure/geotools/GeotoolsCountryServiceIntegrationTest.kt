@@ -45,6 +45,18 @@ internal class GeotoolsCountryServiceIntegrationTest {
     }
 
     @Test
+    fun shouldReturnCountryNameGivenPointFromCountryInsideAnotherCountry() {
+        // given
+        val point = Point(-29.342155F, 27.462126F)
+
+        // when
+        val result = geotoolsCountryService.getCountry(point)
+
+        // then
+        assertThat(result).contains("Lesotho")
+    }
+
+    @Test
     fun shouldReturnAntarctica() {
         // given
         val point = Point(-76.746264F, 12.224188F)
