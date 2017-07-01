@@ -23,7 +23,7 @@ internal class GeotoolsCountryServiceIntegrationTest {
     @Test
     fun shouldReturnCountryNameGivenSimplePoint() {
         // given
-        val point = Point(50.036999F, 18.391258F)
+        val point = SamplePoints.WARSAW_POLAND
 
         // when
         val result = geotoolsCountryService.getCountry(point)
@@ -35,7 +35,7 @@ internal class GeotoolsCountryServiceIntegrationTest {
     @Test
     fun shouldNotReturnCountryNameGivenPointInTheOcean() {
         // given
-        val point = Point(38.073558F, -40.783570F)
+        val point = SamplePoints.ATLANTIC_OCEAN
 
         // when
         val result = geotoolsCountryService.getCountry(point)
@@ -47,7 +47,7 @@ internal class GeotoolsCountryServiceIntegrationTest {
     @Test
     fun shouldReturnCountryNameGivenPointFromCountryInsideAnotherCountry() {
         // given
-        val point = Point(-29.342155F, 27.462126F)
+        val point = SamplePoints.MASERU_LESOTHO
 
         // when
         val result = geotoolsCountryService.getCountry(point)
@@ -59,7 +59,7 @@ internal class GeotoolsCountryServiceIntegrationTest {
     @Test
     fun shouldReturnAntarctica() {
         // given
-        val point = Point(-76.746264F, 12.224188F)
+        val point = SamplePoints.ANTARCTICA
 
         // when
         val result = geotoolsCountryService.getCountry(point)
@@ -69,14 +69,26 @@ internal class GeotoolsCountryServiceIntegrationTest {
     }
 
     @Test
-    fun shouldReturnFrance() {
+    fun shouldReturnFranceGivenPointInAntarctica() {
         // given
-        val point = Point(-49.289710F, 69.199114F)
+        val point = SamplePoints.FRENCH_SOUTHERN_AND_ANTARCTIC_LANDS
 
         // when
         val result = geotoolsCountryService.getCountry(point)
 
         // then
         assertThat(result).contains("France")
+    }
+
+    @Test
+    fun shouldReturnCountryNameGivenBorderPoint() {
+        // given
+        val point = SamplePoints.USA_BORDER
+
+        // when
+        val result = geotoolsCountryService.getCountry(point)
+
+        // then
+        assertThat(result).contains("United States of America")
     }
 }
