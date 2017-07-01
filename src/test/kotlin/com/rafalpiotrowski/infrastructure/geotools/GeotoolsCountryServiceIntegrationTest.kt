@@ -23,7 +23,7 @@ internal class GeotoolsCountryServiceIntegrationTest {
     @Test
     fun shouldReturnCountryNameGivenSimplePoint() {
         // given
-        val point = Point(50.036999, 18.391258)
+        val point = Point(50.036999F, 18.391258F)
 
         // when
         val result = geotoolsCountryService.getCountry(point)
@@ -35,7 +35,7 @@ internal class GeotoolsCountryServiceIntegrationTest {
     @Test
     fun shouldNotReturnCountryNameGivenPointInTheOcean() {
         // given
-        val point = Point(38.073558, -40.783570)
+        val point = Point(38.073558F, -40.783570F)
 
         // when
         val result = geotoolsCountryService.getCountry(point)
@@ -47,7 +47,7 @@ internal class GeotoolsCountryServiceIntegrationTest {
     @Test
     fun shouldReturnAntarctica() {
         // given
-        val point = Point(-76.746264, 12.224188)
+        val point = Point(-76.746264F, 12.224188F)
 
         // when
         val result = geotoolsCountryService.getCountry(point)
@@ -59,7 +59,7 @@ internal class GeotoolsCountryServiceIntegrationTest {
     @Test
     fun shouldReturnFrance() {
         // given
-        val point = Point(-49.289710, 69.199114)
+        val point = Point(-49.289710F, 69.199114F)
 
         // when
         val result = geotoolsCountryService.getCountry(point)

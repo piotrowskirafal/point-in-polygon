@@ -18,8 +18,8 @@ internal class PointsGeneratorTest {
         val result = pointsGenerator.generatePoints(numberOfPoints)[0]
 
         // then
-        assertThat(result.latitude).isBetween(Point.LATITUDE_MIN_VALUE.toDouble(), Point.LATITUDE_MAX_VALUE.toDouble())
-        assertThat(result.longitude).isBetween(Point.LONGITUDE_MIN_VALUE.toDouble(), Point.LONGITUDE_MAX_VALUE.toDouble())
+        assertThat(result.latitude).isBetween(Point.LATITUDE_MIN_VALUE, Point.LATITUDE_MAX_VALUE)
+        assertThat(result.longitude).isBetween(Point.LONGITUDE_MIN_VALUE, Point.LONGITUDE_MAX_VALUE)
     }
 
     @Test

@@ -20,15 +20,14 @@ class GeotoolsCountryService(private val simpleFeatureSource: SimpleFeatureSourc
         result.features().use { features ->
             if (features.hasNext()) {
                 return Optional.of(getCountryName(features.next()))
-            } else {
-                return Optional.empty()
             }
         }
+        return Optional.empty()
     }
 
     private fun createPointInPolygonFilter(geometryAttributeName: String, point: Point): Filter {
         val filterFactory = CommonFactoryFinder.getFilterFactory2(null)
-        val jstPoint = JTS.toGeometry(DirectPosition2D(point.longitude, point.latitude))
+        val jstPoint = JTS.toGeometry(DirectPosition2D(point.longitude.toDouble(), point.latitude.toDouble()))
         return filterFactory.contains(filterFactory.property(geometryAttributeName), filterFactory.literal(jstPoint))
     }
 

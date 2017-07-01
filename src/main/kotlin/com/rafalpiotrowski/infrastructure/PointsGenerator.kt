@@ -14,12 +14,12 @@ class PointsGenerator {
     }
 
     private fun createRandomPoint(): Point {
-        return Point(generateDoubleBetween(Point.LATITUDE_MIN_VALUE, Point.LATITUDE_MAX_VALUE),
-                generateDoubleBetween(Point.LONGITUDE_MIN_VALUE, Point.LONGITUDE_MAX_VALUE))
+        return Point(generateNumberBetween(Point.LATITUDE_MIN_VALUE, Point.LATITUDE_MAX_VALUE),
+                generateNumberBetween(Point.LONGITUDE_MIN_VALUE, Point.LONGITUDE_MAX_VALUE))
     }
 
-    private fun generateDoubleBetween(start: Int, end: Int): Double {
-        return (Math.random() * (end - start)) + start
+    private fun generateNumberBetween(start: Float, end: Float): Float {
+        return ((Math.random() * (end - start)) + start).toFloat()
     }
 }
 
