@@ -12,7 +12,7 @@ internal class PointsGeneratorTest {
     @Test
     fun shouldGeneratePointWithCorrectLatitudeAndLongitude() {
         // given
-        val numberOfPoints = 1L
+        val numberOfPoints = 1
 
         // when
         val result = pointsGenerator.generatePoints(numberOfPoints)[0]
@@ -25,12 +25,12 @@ internal class PointsGeneratorTest {
     @Test
     fun shouldGenerateGivenNumberOfPoints() {
         // given
-        val numberOfPoints = 1_000_000L
+        val numberOfPoints = 1_000_000
 
         // when
         val result = pointsGenerator.generatePoints(numberOfPoints)
 
         // then
-        assertThat(result.size.toLong()).isEqualTo(numberOfPoints)
+        assertThat(result.size).isEqualTo(numberOfPoints)
     }
 }

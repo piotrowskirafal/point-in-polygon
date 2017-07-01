@@ -7,7 +7,7 @@ import java.util.*
 @Service
 class PointsGenerator {
 
-    fun generatePoints(pointsNumber: Long): List<Point> {
+    fun generatePoints(pointsNumber: Int): List<Point> {
         return (1..pointsNumber)
                 .map { createRandomPoint() }
                 .toCollection(LinkedList())

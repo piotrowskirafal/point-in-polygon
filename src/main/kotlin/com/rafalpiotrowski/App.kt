@@ -3,26 +3,20 @@ package com.rafalpiotrowski
 import com.rafalpiotrowski.domain.CountryService
 import com.rafalpiotrowski.domain.Place
 import com.rafalpiotrowski.infrastructure.PointsGenerator
-import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.Banner
 import org.springframework.boot.CommandLineRunner
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import java.lang.System.exit
 
-
 @SpringBootApplication
-class App : CommandLineRunner {
-
-    @Autowired
-    lateinit var countryService: CountryService
-
-    @Autowired
-    lateinit var pointsGenerator: PointsGenerator
+class App(private val countryService: CountryService, private val pointsGenerator: PointsGenerator,
+          @Value("\${points.number}") private val pointsNumber: Int) : CommandLineRunner {
 
     @Throws(Exception::class)
     override fun run(vararg args: String) {
-        val points = pointsGenerator.generatePoints(1_000)
+        val points = pointsGenerator.generatePoints(pointsNumber)
         val places = points.map { point -> Place(point, countryService.getCountry(point).orElseGet { "not_in_a_country" }) }
         places.forEach({ place -> println(place) })
         exit(0)
