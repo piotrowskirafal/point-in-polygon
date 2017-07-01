@@ -36,6 +36,6 @@ class GeotoolsCountryService(private val simpleFeatureSource: SimpleFeatureSourc
     }
 
     private fun getCountryName(feature: SimpleFeature): String {
-        return feature.getAttribute(4).toString()
+        return feature.getAttribute("name_long").toString()
     }
 }

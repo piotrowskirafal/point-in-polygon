@@ -89,6 +89,6 @@ internal class GeotoolsCountryServiceIntegrationTest {
         val result = geotoolsCountryService.getCountry(point)
 
         // then
-        assertThat(result).contains("United States of America")
+        assertThat(result).contains("United States")
     }
 }
