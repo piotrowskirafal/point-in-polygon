@@ -1,5 +1,6 @@
 package com.rafalpiotrowski.infrastructure.geotools
 
+import com.rafalpiotrowski.domain.SamplePoints
 import com.rafalpiotrowski.infrastructure.ResourceUtils
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.BeforeClass
@@ -65,18 +66,6 @@ internal class GeotoolsCountryServiceIntegrationTest {
 
         // then
         assertThat(result).contains("Antarctica")
-    }
-
-    @Test
-    fun shouldReturnFranceGivenPointInAntarctica() {
-        // given
-        val point = SamplePoints.FRENCH_SOUTHERN_AND_ANTARCTIC_LANDS
-
-        // when
-        val result = geotoolsCountryService.getCountry(point)
-
-        // then
-        assertThat(result).contains("France")
     }
 
     @Test
