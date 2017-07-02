@@ -1,10 +1,8 @@
 package com.rafalpiotrowski.infrastructure
 
 import com.rafalpiotrowski.domain.Point
-import org.springframework.stereotype.Service
 import java.util.*
 
-@Service
 class PointsGenerator {
 
     fun generatePoints(pointsNumber: Int): List<Point> {

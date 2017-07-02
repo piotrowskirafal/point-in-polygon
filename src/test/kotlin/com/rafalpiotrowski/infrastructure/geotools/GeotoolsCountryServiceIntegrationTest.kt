@@ -1,10 +1,9 @@
 package com.rafalpiotrowski.infrastructure.geotools
 
-import com.rafalpiotrowski.domain.Point
+import com.rafalpiotrowski.infrastructure.ResourceUtils
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.BeforeClass
 import org.junit.Test
-import org.springframework.util.ResourceUtils
 
 internal class GeotoolsCountryServiceIntegrationTest {
 
@@ -14,7 +13,7 @@ internal class GeotoolsCountryServiceIntegrationTest {
 
         @BeforeClass @JvmStatic
         fun setUp() {
-            val fileUri = ResourceUtils.getURL("classpath:countries/ne_110m_admin_0_countries.shp").toURI()
+            val fileUri = ResourceUtils().getFileUri(ResourceUtils.SHP_FILE_PATH)
             val featureSourceFactory = FeatureSourceFactory()
             geotoolsCountryService = GeotoolsCountryService(featureSourceFactory.createFeatureSource(fileUri))
         }
