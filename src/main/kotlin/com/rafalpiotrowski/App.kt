@@ -9,6 +9,7 @@ import org.springframework.boot.CommandLineRunner
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import java.lang.System.exit
+import java.util.concurrent.TimeUnit
 
 @SpringBootApplication
 class App(private val countryService: CountryService, private val pointsGenerator: PointsGenerator,
@@ -16,9 +17,14 @@ class App(private val countryService: CountryService, private val pointsGenerato
 
     @Throws(Exception::class)
     override fun run(vararg args: String) {
+        println("generating points ($pointsNumber)")
         val points = pointsGenerator.generatePoints(pointsNumber)
-        val places = points.map { point -> Place(point, countryService.getCountry(point).orElseGet { "not_in_a_country" }) }
+        println("matching points with countries")
+        val start = System.nanoTime()
+        val places = points.map { point -> Place(point, countryService.getCountry(point).orElseGet { "Not in a country" }) }
+        val time = System.nanoTime() - start
         places.forEach({ place -> println(place) })
+        println("time: " + TimeUnit.SECONDS.convert(time, TimeUnit.NANOSECONDS))
         exit(0)
     }
 }
@@ -28,4 +34,3 @@ fun main(args: Array<String>) {
     app.setBannerMode(Banner.Mode.OFF)
     app.run(*args)
 }
-

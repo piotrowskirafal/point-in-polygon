@@ -12,10 +12,10 @@ import org.springframework.stereotype.Service
 import java.util.*
 
 @Service
-class GeotoolsCountryService(private val simpleFeatureSource: SimpleFeatureSource): CountryService {
+class GeotoolsCountryService(private val simpleFeatureSource: SimpleFeatureSource) : CountryService {
 
     override fun getCountry(point: Point): Optional<String> {
-        val filter = createPointInPolygonFilter(getLocalName(simpleFeatureSource), point);
+        val filter = createPointInPolygonFilter(getLocalName(simpleFeatureSource), point)
         val result = simpleFeatureSource.getFeatures(filter)
         result.features().use { features ->
             if (features.hasNext()) {
